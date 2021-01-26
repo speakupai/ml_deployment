@@ -3,7 +3,9 @@
 
 # 1. Library imports
 import pandas as pd 
-import torch
+from sklearn.ensemble import RandomForestClassifier
+from pydantic import BaseModel
+import joblib
 
 
 # 2. Class which describes a single flower measurements
