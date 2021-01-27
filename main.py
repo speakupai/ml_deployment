@@ -11,17 +11,13 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-#from Model import IrisModel, IrisSpecies
-
 # 2. Create app and model objects
 app = FastAPI()
-app.mount('/static', StaticFiles(directory='static'), name='style')
+app.mount("/static", StaticFiles(directory="static"), name="style")
 templates = Jinja2Templates(directory="templates")
-
-#model = IrisModel()
 
 #3. Welcome page
 
-@app.get("{/templates/index}")
-async def read_item(index):
-    return {"index":index}
+@app.get("/index", response_class=HTMLResponse)
+async def read_item(request:Request):
+    return templates.TemplateResponse("index.html", {"request": request})
