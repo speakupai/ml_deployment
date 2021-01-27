@@ -14,9 +14,13 @@ from fastapi.templating import Jinja2Templates
 # 2. Create app and model objects
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="style")
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="templates/")
 
 #3. Welcome page
+
+@app.get("/")
+def read_root():
+    return {"Iris": "Experiment"}
 
 @app.get("/index/{id}", response_class=HTMLResponse)
 async def read_index(request:Request, id:str):
