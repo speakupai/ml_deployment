@@ -18,6 +18,6 @@ templates = Jinja2Templates(directory="templates")
 
 #3. Welcome page
 
-@app.get("/index", response_class=HTMLResponse)
-async def read_item(request:Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+@app.get("/index/{id}", response_class=HTMLResponse)
+async def read_index(request:Request, id:str):
+    return templates.TemplateResponse("index.html", {"request": request, "id":id})
