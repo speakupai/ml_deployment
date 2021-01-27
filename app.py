@@ -23,14 +23,18 @@ model = IrisModel()
 
 #3. Welcome page
 
-@app.get("/")
+@app.get('/predict', response_class=HTMLResponse)
+async def read_item(request: Request):
+    return templates.TemplateResponse('index.html', {'request':request})
+
+'''@app.get('/predict')
 def read_root():
-    return {"Iris": "Experiment"}
+    return {'Iris': 'Experiment'}'''
 
 
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted flower species with the confidence
-@app.post('/predict')
+@app.post("/")
 def predict_species(iris: IrisSpecies):
     data = iris.dict()
     prediction, probability = model.predict_species(
