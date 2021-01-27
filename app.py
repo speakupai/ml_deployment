@@ -13,20 +13,8 @@ from fastapi.templating import Jinja2Templates
 
 # 2. Create app and model objects
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="style")
-templates = Jinja2Templates(directory="templates/")
 
-#3. Welcome page
-
-@app.get("/")
-def read_root():
-    return {"Iris": "Experiment"}
-
-@app.get("/index/{id}", response_class=HTMLResponse)
-async def read_index(request:Request, id:str):
-    return templates.TemplateResponse("index.html", {"request": request, "id":id})
-
-# 4. Run the API with uvicorn
+# 1. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+    uvicorn.run('main:app', host='127.0.0.1', port=8000, reload = True)
