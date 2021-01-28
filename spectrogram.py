@@ -25,7 +25,4 @@ def create_spectrogram(snd_file, srate):
     fig.colorbar(img, ax=ax, format='%+2.0f dB')
     ax.set(title='Mel-frequency spectrogram')
    
-    plt.show()
-
-sound_clip, sample_rate = load_audio(audio_file)
-create_spectrogram(sound_clip, sample_rate)
+    return fig
