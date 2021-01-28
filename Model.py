@@ -2,48 +2,18 @@
 # -*- coding: utf-8 -*-
 
 # 1. Library imports
-import pandas as pd 
-from sklearn.ensemble import RandomForestClassifier
+import tensorflow as tf
 from pydantic import BaseModel
-import joblib
 
+# 1. Class for loading model and making predictions
+class LoadModel(tf.keras.models.Model):
+    # Class constructor that loads the model
+    def __init__(self, model_path):
+        super(tf.keras.models.Model)
+        self.model = tf.keras.models.load_model(model_path)
 
-# 2. Class which describes a single flower measurements
-class IrisSpecies(BaseModel):
-    sepal_length: float 
-    sepal_width: float 
-    petal_length: float 
-    petal_width: float
-
-
-# 3. Class for training the model and making predictions
-class IrisModel:
-    # 6. Class constructor, loads the dataset and loads the model
-    #    if exists. If not, calls the _train_model method and 
-    #    saves the model
-    def __init__(self):
-        self.df = pd.read_csv('iris.csv')
-        self.model_fname_ = 'iris_model.pkl'
-        try: #This implies to load the model if it exists
-            self.model = joblib.load(self.model_fname_)
-        except Exception as _: #or else to fit the model and generate teh .pkl file
-            self.model = self._train_model()
-            joblib.dump(self.model, self.model_fname_)
+    # Returns the predicted classes with its respective probability
+    def predict_species(self, image):
+        prediction = self.model.predict(image)
         
-
-    # 4. Perform model training using the RandomForest classifier
-    def _train_model(self):
-        X = self.df.drop('species', axis=1)
-        y = self.df['species']
-        rfc = RandomForestClassifier()
-        model = rfc.fit(X, y)
-        return model
-
-
-    # 5. Make a prediction based on the user-entered data
-    #    Returns the predicted species with its respective probability
-    def predict_species(self, sepal_length, sepal_width, petal_length, petal_width):
-        data_in = [[sepal_length, sepal_width, petal_length, petal_length]]
-        prediction = self.model.predict(data_in)
-        probability = self.model.predict_proba(data_in).max()
-        return prediction[0], probability
+        return prediction[0]
