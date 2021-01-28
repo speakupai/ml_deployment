@@ -2,10 +2,22 @@
 <head>
     <title>SpeakUp AI</title>
 </head>
+
+<style>
+    body {
+        background-color: rgb(70, 67, 67);
+        color: white;
+    }
+</style>
+
 <body>
     <h1 style="text-align: center;">Welcome to SpeakUp AI</h1>
     <div>
-        <button>Upload Audio</button>
+    <h1>Upload new File</h1>
+        <form method=post enctype=multipart/form-data>
+            <input type=file name=file>
+            <input type=submit value=Upload>
+        </form>
     </div>
 </body>
 </html>
