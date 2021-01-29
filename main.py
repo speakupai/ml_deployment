@@ -29,9 +29,14 @@ async def read_root(request:Request):
 
 @app.post("/uploads")
 async def create_upload_file(file: UploadFile = File(...)):
+    tmp_uploads_path = './uploads/'
+    p = Path(tmp_uploads_path + file)
+
+    save_uploaded_file(file, p)
+    
     return {"filename": file.filename}
 
-'''
+
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
     try:
         with destination.open("wb") as buffer:
@@ -40,7 +45,7 @@ def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
         upload_file.file.close()
 
 
-
+'''
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
     tmp_uploads_path = './uploads/'
