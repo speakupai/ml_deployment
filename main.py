@@ -33,7 +33,7 @@ async def create_upload_file(file: UploadFile = File(...)):
     p = Path(tmp_uploads_path + file)
 
     save_uploaded_file(file, p)
-    
+
     return {"filename": file.filename}
 
 
