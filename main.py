@@ -20,6 +20,7 @@ UPLOAD_FOLDER = 'uploads'
 # 2. Create app and model objects
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="styles")
+
 templates = Jinja2Templates(directory="templates/")
 
 #3. Welcome page
@@ -29,10 +30,9 @@ async def read_root(request:Request):
 
 @app.post("/uploads")
 async def create_upload_file(file: UploadFile = File(...)):
-    print(type(file))
-    tmp_uploads_path = './uploads/'
-    p = Path(tmp_uploads_path + file)
 
+    tmp_uploads_path = './uploads/'
+    p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
     return {"filename": file.filename}
@@ -45,8 +45,8 @@ def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
     finally:
         upload_file.file.close()
 
-
 '''
+
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
     tmp_uploads_path = './uploads/'

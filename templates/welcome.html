@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>SpeakUp AI</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 </head>
 
 <style>
@@ -14,10 +16,9 @@
     <h1 style="text-align: center;">Welcome to SpeakUp AI</h1>
     <div>
     <h1>Upload File</h1>
-        <form enctype="multipart/form-data" action="/uploads" method="POST">
-            <input type="file" id="myFile" name="filename">
-            <input type="submit">
-        </form>
+        <form enctype=multipart/form-data action="/uploads" method="POST">
+            <input type="file" name="file">
+            <input type="submit" value="upload">
     </div>
 </body>
 </html>
