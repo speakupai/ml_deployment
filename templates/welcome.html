@@ -14,7 +14,7 @@
     <h1 style="text-align: center;">Welcome to SpeakUp AI</h1>
     <div>
     <h1>Upload File</h1>
-        <form action="/uploads" method="POST">
+        <form enctype="multipart/form-data" action="/uploads" method="POST">
             <input type="file" id="myFile" name="filename">
             <input type="submit">
         </form>

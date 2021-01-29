@@ -29,6 +29,7 @@ async def read_root(request:Request):
 
 @app.post("/uploads")
 async def create_upload_file(file: UploadFile = File(...)):
+    print(type(file))
     tmp_uploads_path = './uploads/'
     p = Path(tmp_uploads_path + file)
 
