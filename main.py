@@ -16,6 +16,7 @@ from typing import List
 import uuid
 
 UPLOAD_FOLDER = 'uploads'
+img_path = './uploads/31.jpg'
 
 # 2. Create app and model objects
 app = FastAPI()
@@ -39,8 +40,8 @@ async def create_upload_file( request:Request, file: UploadFile = File(...)):
     p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
-    return templates.TemplateResponse("upload_page.html", {"request": request, "filename": file.filename}
-    ), FileResponse('../uploades/{}', file.filename)
+    return templates.TemplateResponse("upload_page.html", 
+    {"request": request, "filename": file.filename})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
