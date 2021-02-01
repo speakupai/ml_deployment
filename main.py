@@ -35,10 +35,6 @@ async def read_root(request:Request):
 @app.post("/uploads")
 async def create_upload_file( request:Request, file: UploadFile = File(...)):
     
-    prediction, im  = predict_type(file.file)
-    im = np.array(im)
-    im = Image.fromarray(im)
-
     tmp_uploads_path = './uploads/'
 
     if not os.path.exists(tmp_uploads_path):
@@ -47,8 +43,10 @@ async def create_upload_file( request:Request, file: UploadFile = File(...)):
     p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
+    prediction  = predict_type(p)
+
     return templates.TemplateResponse("upload_page.html", 
-    {"request": request, "filename": file.filename, "prediction":prediction, "image":im})
+    {"request": request, "filename": file.filename, "prediction":prediction})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
