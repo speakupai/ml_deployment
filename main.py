@@ -15,8 +15,6 @@ from pathlib import Path
 from typing import List
 import uuid
 from Model import predict_type
-import numpy as np
-from PIL import Image
 
 UPLOAD_FOLDER = 'uploads'
 img_path = './uploads/31.jpg'
