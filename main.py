@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import List
 import uuid
 from Model import predict_type
+import inference
 
 UPLOAD_FOLDER = 'uploads'
 
