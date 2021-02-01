@@ -9,12 +9,12 @@ from pydantic import BaseModel
 def predict_type(image):
     model = tf.keras.models.load_model(
         '/home/taimur/Documents/Online Courses/Fourth Brain/Projects/Audio_super_res/ml_deployment/saved_model/10l-3c_zca.h5')
-    img = tf.io.decode_jpeg(image.read())
-    img = tf.image.resize(img, (224,224))
+    img_1 = tf.io.decode_jpeg(image.read())
+    img = tf.image.resize(img_1, (224,224))
     img = tf.expand_dims(img, axis=0)
     prediction = model.predict(img)
     #return img.shape
-    return prediction[0]
+    return prediction[0], img_1
 
 # 1. Class for loading model and making predictions
 '''class LoadModel(tf.keras.models.Model):

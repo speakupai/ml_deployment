@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import List
 import uuid
 from Model import predict_type
+import numpy as np
+from PIL import Image
 
 UPLOAD_FOLDER = 'uploads'
 img_path = './uploads/31.jpg'
@@ -32,7 +34,11 @@ async def read_root(request:Request):
 
 @app.post("/uploads")
 async def create_upload_file( request:Request, file: UploadFile = File(...)):
-    prediction = predict_type(file.file)
+    
+    prediction, im  = predict_type(file.file)
+    im = np.array(im)
+    im = Image.fromarray(im)
+
     tmp_uploads_path = './uploads/'
 
     if not os.path.exists(tmp_uploads_path):
@@ -42,7 +48,7 @@ async def create_upload_file( request:Request, file: UploadFile = File(...)):
     save_uploaded_file(file, p)
 
     return templates.TemplateResponse("upload_page.html", 
-    {"request": request, "filename": file.filename, "prediction":prediction})
+    {"request": request, "filename": file.filename, "prediction":prediction, "image":im})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
