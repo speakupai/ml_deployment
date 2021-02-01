@@ -17,7 +17,6 @@ import uuid
 from Model import predict_type
 
 UPLOAD_FOLDER = 'uploads'
-img_path = './uploads/31.jpg'
 
 # 2. Create app and model objects
 app = FastAPI()
