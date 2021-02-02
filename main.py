@@ -6,7 +6,7 @@ Created on Tue Jan 26
 
 # 1. Library imports
 import uvicorn
-from fastapi import FastAPI, Request, File, UploadFile
+from fastapi import FastAPI, Request, File, UploadFile, BackgroundTasks
 from fastapi.responses import HTMLResponse
 #from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -32,7 +32,10 @@ async def read_root(request:Request):
     return templates.TemplateResponse("welcome.html", {"request": request, "message":"message"})
 
 @app.post("/uploads")
-async def create_upload_file( request:Request, file: UploadFile = File(...)):
+async def create_upload_file(request:Request,
+                            background_tasks:BackgroundTasks,
+                            file: UploadFile = File(...), 
+                            ):
     
     tmp_uploads_path = './uploads/'
 
@@ -42,11 +45,13 @@ async def create_upload_file( request:Request, file: UploadFile = File(...)):
     p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
-    #prediction  = predict_type(p)
-    inference(p)
-
-    return templates.TemplateResponse("upload_page.html", {"request": request, "filename": file.filename})
-    #{"request": request, "filename": file.filename, "prediction":prediction})
+    background_tasks.add_task(inference(p), message='your file is being processed')
+    
+    return templates.TemplateResponse("upload_page.html", 
+                                    {"request": request, 
+                                    "filename": file.filename,
+                                    "type":file.content_type,
+                                    "message":"file is processing"})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
@@ -56,3 +61,6 @@ def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
     finally:
         upload_file.file.close()
 
+'''@app.get("/inf")
+async def run_inference(path):
+    inference(path)'''

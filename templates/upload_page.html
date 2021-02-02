@@ -5,7 +5,7 @@
 
 <style>
     body {
-        background-color: rgb(114, 101, 101);
+        background-color: rgb(121, 101, 101);
         color: white;
     }
 </style>
@@ -13,12 +13,16 @@
 <body>
     <h1 style="text-align: center;">Welcome to SpeakUp AI</h1>
     <div>
-        <h4>uploaded file successfully</h4>
-        <output>{{filename}}</output>
-        <output>{{prediction}}</output>
+        <h3 style="margin-left: 2in;">File Uploaded Successfully</h3>
+        <h4 style="margin-left: 2in;">File Name:</h4>
+        <output style="margin-left: 2in;">{{filename}}</output><br>
+        <h4 style="margin-left: 2in;">Content Type:</h4>
+        <output style="margin-left: 2in;">{{type}}</output><br>
     </div>
     <div>
-        
+        <h3 style="text-align: center;">Your file is being processed</h3>
+        <h4 style="margin-left: 2in;">we will send a link when processing is complete</h4>
+        <output style="margin-left: 2in;">{{message}}</output><br>
     </div>
 </body>
 </html>
