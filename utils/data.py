@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.utils.data import IterableDataset
 
 import utils as utils
-from hparams import hparams as hp
+from utils.hparams import hparams as hp
 
 
 class ConvDataset(IterableDataset):

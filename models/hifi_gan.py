@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchaudio
 
-from hparams import hparams as hp
+from utils.hparams import hparams as hp
 
 
 class PostNet(nn.Module):

@@ -16,6 +16,7 @@ TEST*.xml
 *.app
 *.exe
 *.war
+*.pt
 
 # Large media files
 *.mp4

@@ -7,15 +7,16 @@ Created on Tue Jan 26
 # 1. Library imports
 import uvicorn
 from fastapi import FastAPI, Request, File, UploadFile
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
+#from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import shutil, os
 from pathlib import Path
-from typing import List
-import uuid
-from Model import predict_type
-import inference
+#from typing import List
+#import uuid
+#from Model import predict_type
+from inference import inference
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -41,10 +42,11 @@ async def create_upload_file( request:Request, file: UploadFile = File(...)):
     p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
-    prediction  = predict_type(p)
+    #prediction  = predict_type(p)
+    inference(p)
 
-    return templates.TemplateResponse("upload_page.html", 
-    {"request": request, "filename": file.filename, "prediction":prediction})
+    return templates.TemplateResponse("upload_page.html", {"request": request, "filename": file.filename})
+    #{"request": request, "filename": file.filename, "prediction":prediction})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:

@@ -6,7 +6,7 @@ import pandas as pd
 import torch
 import torch.distributed
 
-import utils.s3_utils as s3_utils
+#import utils.s3_utils as s3_utils
  
 
 def import_module(path):
@@ -69,7 +69,7 @@ def dir_walk(path, ext):
     return file_list
 
 
-def parse_data_structure(path):
+'''def parse_data_structure(path):
     # Checks if supplied path points to dir or dataframe
     assert path != '', 'Please set your data paths in hparams.py.'
     if s3_utils.is_path_existed(path):
@@ -85,7 +85,7 @@ def parse_data_structure(path):
         return df
     else:
         raise IOError(f'Argument  path  must point to directory or pickled DataFrame, but points to "{path}".')
-
+'''
 
 def list_into_dict(dictionary, key, value):
     if key not in dictionary:
