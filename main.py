@@ -17,6 +17,7 @@ from pathlib import Path
 #import uuid
 #from Model import predict_type
 from inference import inference
+from utils.spectrogram import create_spectrogram
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -45,13 +46,16 @@ async def create_upload_file(request:Request,
     p = Path(tmp_uploads_path + file.filename)
     save_uploaded_file(file, p)
 
-    background_tasks.add_task(inference(p), message='your file is being processed')
+    #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
+    spect = create_spectrogram(p)
+
+    #inference(p)
     
     return templates.TemplateResponse("upload_page.html", 
                                     {"request": request, 
                                     "filename": file.filename,
                                     "type":file.content_type,
-                                    "message":"file is processing"})
+                                    "spect":spect})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
