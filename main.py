@@ -46,7 +46,6 @@ async def create_upload_file(request:Request,
     save_uploaded_file(file, p)
 
     #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
-    spect = create_spectrogram(p)
     
     #inference(p)
     
@@ -62,6 +61,11 @@ def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
             shutil.copyfileobj(upload_file.file, buffer)
     finally:
         upload_file.file.close()
+
+@app.get("/spect")
+async def spect(file_path: str, response: FileResponse):
+    spectogram = create_spectrogram(file_path)
+    return FileResponse('spectrogram', media_type='image/png')
 
 '''@app.get("/inf")
 async def run_inference(path):
