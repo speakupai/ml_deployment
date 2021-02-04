@@ -21,24 +21,9 @@
         <h4 style="margin-left: 2in;">Content Type:</h4>
         <output style="margin-left: 2in;">{{type}}</output><br>
     </div>
-    <div class='content'>
-        <h3 style="text-align: center;">Your file is being processed</h3>
-        <h4 style="margin-left: 2in;">we will send a link when processing is complete</h4>
-        <div class='content'>
-            <div class='no-display'>
-              <input style="margin-left: 2in;" id='file-input'
-                                              class='no-display'
-                                              type='file'
-                                              name='file'
-                                              accept='image/*'
-                                              onchange='showPicked(this)'>
-            </div>
-            <div class='upload-label'>
-                <label style="margin-left: 2in;" id='upload-label'>No file chosen</label>
-            </div>
-            <div>
-                <img style="margin-left: 2in;" id='image-picked' class='no-display' alt='Chosen Image' height='400'>
-            </div>
-    </div>
+    <img src="../templates/spect.png" alt="spect">
+    <form style="margin-left: 2in;" enctype=multipart/form-data action="/uploads" method="POST">
+        <input type="file" name="file">
+        <input type="submit" value="upload">
 </body>
 </html>

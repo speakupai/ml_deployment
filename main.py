@@ -5,9 +5,10 @@ Created on Tue Jan 26
 """
 
 # 1. Library imports
+from fastapi import responses
 import uvicorn
 from fastapi import FastAPI, Request, File, UploadFile, BackgroundTasks
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import shutil, os
@@ -46,9 +47,10 @@ async def create_upload_file(request:Request,
     save_uploaded_file(file, p)
 
     #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
+
+    inference(p)
     
-    #inference(p)
-    
+    #return StreamingResponse(spect, media_type='image/png')
     return templates.TemplateResponse("upload_page.html", 
                                     {"request": request, 
                                     "filename": file.filename,
@@ -63,9 +65,12 @@ def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
         upload_file.file.close()
 
 @app.get("/spect")
-async def spect(file_path: str, response: FileResponse):
-    spectogram = create_spectrogram(file_path)
-    return FileResponse('spectrogram', media_type='image/png')
+async def spect(file_path: str, response: StreamingResponse):
+    spect_temp = create_spectrogram(file_path)
+
+    spect = open(spect_temp, mode='rb')
+
+    return StreamingResponse(spect, media_type='image/png')
 
 '''@app.get("/inf")
 async def run_inference(path):

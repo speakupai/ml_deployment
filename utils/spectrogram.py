@@ -7,6 +7,7 @@ from librosa.feature import melspectrogram
 import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 def create_spectrogram(audio_file):
    snd, sr = librosa.load(audio_file, sr=16000) 
@@ -18,6 +19,7 @@ def create_spectrogram(audio_file):
                         fmax=8000, ax=ax)
    fig.colorbar(img, ax=ax, format='%+2.0f dB')
    ax.set(title='Mel-frequency spectrogram')
-   plt.savefig('./templates/spect.png')
-   
-   return fig
+   save_path = './spectrograms/spect.png'
+   plt.savefig(save_path)
+
+   return save_path
