@@ -53,8 +53,7 @@ async def create_upload_file(request:Request,
     return templates.TemplateResponse("upload_page.html", 
                                     {"request": request, 
                                     "filename": file.filename,
-                                    "type":file.content_type,
-                                    "spect":spect})
+                                    "type":file.content_type})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:

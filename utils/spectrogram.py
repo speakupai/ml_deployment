@@ -18,5 +18,6 @@ def create_spectrogram(audio_file):
                         fmax=8000, ax=ax)
    fig.colorbar(img, ax=ax, format='%+2.0f dB')
    ax.set(title='Mel-frequency spectrogram')
+   plt.savefig('./templates/spect.png')
    
    return fig
