@@ -7,8 +7,7 @@ Created on Tue Jan 26
 # 1. Library imports
 import uvicorn
 from fastapi import FastAPI, Request, File, UploadFile, BackgroundTasks
-from fastapi.responses import HTMLResponse
-#from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import shutil, os
@@ -34,7 +33,7 @@ async def read_root(request:Request):
 
 @app.post("/uploads")
 async def create_upload_file(request:Request,
-                            background_tasks:BackgroundTasks,
+                            #background_tasks:BackgroundTasks,
                             file: UploadFile = File(...), 
                             ):
     
@@ -48,7 +47,7 @@ async def create_upload_file(request:Request,
 
     #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
     spect = create_spectrogram(p)
-
+    
     #inference(p)
     
     return templates.TemplateResponse("upload_page.html", 
