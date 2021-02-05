@@ -14,9 +14,7 @@ from utils.hparams import hparams as hp
 
 
 def inference(audio_clip):
-    #original_file = input('enter original file or folder path:\n')
     original_file = audio_clip
-    #save_dir = input('enter save folder path:\n')
     save_dir = '/home/taimur/Documents/Online Courses/Fourth Brain/Projects/Audio_super_res/ml_deployment/uploads'
     checkpoint_path = '/home/taimur/Documents/Online Courses/Fourth Brain/Projects/Audio_super_res/ml_deployment/saved_model/latest_checkpoint.pt'
     #default_inf_device = 'cpu',
