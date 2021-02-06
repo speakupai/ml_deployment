@@ -45,14 +45,18 @@ async def create_upload_file(request:Request,
         os.makedirs(tmp_uploads_path)
 
     p = Path(tmp_uploads_path + file.filename)
+    p_new = Path(tmp_uploads_path+file.filename[:-4]+'_denoised.wav')
     save_uploaded_file(file, p)
 
     #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
-    spect = './spectrograms/spect.png'
+    create_spectrogram(p, value='_orig')
+    
+    #  run inference
     #inference(p)
+    create_spectrogram(p_new, value='_clean')
     
     #return StreamingResponse(spect, media_type='image/png')
-    # return FileResponse(spect)
+    #return FileResponse(spect)
     return templates.TemplateResponse("upload_page.html", 
                                     {"request": request,
                                     "file_path": p,

@@ -14,19 +14,21 @@
 </style>
 
 <body>
-    <h2 style="text-align: center;">Upload Successful! Your File is being Processed</h2>
+    <h1 style="text-align: center;">Welcome to SpeakUp AI</h1>
     <div>
         <h3 style="margin-left: 2in;">File Uploaded Successfully</h3>
-        <h4 style="margin-left: 2in;">File Name: {{filename}}</h4>
-        <h4 style="margin-left: 2in;">Content Type: {{type}}</h4>
+        <h4 style="margin-left: 2in;">File Name:</h4>
+        <output style="margin-left: 2in;">{{filename}}</output><br>
+        <h4 style="margin-left: 2in;">Content Type:</h4>
+        <output style="margin-left: 2in;">{{type}}</output><br>
     </div>
     <div>
         <h4 style="text-align: center;">Noisy File</h4>
-        <img src="../static/spect_orig.png" height="300" width="600" class="center">
+        <img src="../static/spectrograms/spect_orig.png" height="200" width="600" class="center">
     </div>
     <div>
         <h4 style="text-align: center;">Cleaned File</h4>
-        <img src="../static/spect_clean.png" height="300" width="600" class="center">
+        <img src="../static/spectrograms/spect_clean.png" height="200" width="600" class="center">
     </div>
 </body>
 </html>
