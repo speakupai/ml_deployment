@@ -8,7 +8,6 @@ import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import time
 
 save_folder = '/home/taimur/Documents/Online Courses/Fourth Brain/Projects/Audio_super_res/ml_deployment/static/spectrograms'
 
