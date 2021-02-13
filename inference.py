@@ -19,8 +19,6 @@ def inference(audio_clip):
     checkpoint_path = '/home/taimur/Documents/Online Courses/Fourth Brain/Projects/Audio_super_res/ml_deployment/saved_model/latest_checkpoint.pt'
     #default_inf_device = 'cpu',
 
-    #choices=['cpu'] + [f'cuda:{d}' for d in range(torch.cuda.device_count())], type=str,
-
     # Load checkpoint
     checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
 
