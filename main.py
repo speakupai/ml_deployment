@@ -45,11 +45,11 @@ async def create_upload_file(request:Request,
     save_uploaded_file(file, p)
 
     #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
-    create_spectrogram(p, value='_orig')
+    #create_spectrogram(p, value='_orig')
     
     #  run inference
     #inference(p)
-    create_spectrogram(p_new, value='_clean')
+    #create_spectrogram(p_new, value='_clean')
     
     #return StreamingResponse(spect, media_type='image/png')
     #return FileResponse(spect)

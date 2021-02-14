@@ -4,7 +4,14 @@
     <script src='../static/client.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 </head>
+
+<script>
+    FilePond.setOptions({
+    server: 'http://127.0.0.1:8000'
+});
+</script>
 
 <style>
     body {
@@ -21,5 +28,13 @@
             <input type="file" name="file">
             <input type="submit" value="upload">
     </div>
+    <!--
+    <input type="file">
+        <script>
+        const inputElement = document.querySelector('input[type="file"]');
+        const pond = FilePond.create( inputElement );
+        </script>
+        -->
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 </body>
 </html>
