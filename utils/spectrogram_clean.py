@@ -24,3 +24,4 @@ def create_spectrogram(audio_file):
    save_path = './static/spect_clean.png'
 
    plt.savefig(save_path)
+   plt.close()

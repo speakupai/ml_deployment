@@ -54,8 +54,8 @@ class hparams:
 
     class inference:
         batched = True
-        batch_size = 3
-        sequence_length = 32000
+        batch_size = 1
+        sequence_length = 48000
 
     class augmentation:
         rand_eq_filter_fraction = 3  # Own choice

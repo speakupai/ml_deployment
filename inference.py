@@ -47,7 +47,6 @@ def inference(audio_clip):
                 spect_orig = np.array(x_batch[0])
                 spectrogram.create_spectrogram(spect_orig)
                 clean_temp = model.inference(x_batch)
-                print(clean_temp)
                 y.append(clean_temp)
                 spectrogram_clean.create_spectrogram(np.array(clean_temp))
             y = data.postprocess_inference_data(y, hp.inference.batched,
