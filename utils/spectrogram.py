@@ -5,6 +5,8 @@
 import librosa
 from librosa.feature import melspectrogram
 import librosa.display
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
