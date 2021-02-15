@@ -31,7 +31,7 @@ async def read_root(request:Request):
 @app.post("/uploads")
 async def create_upload_file(request:Request,
                             response: FileResponse,
-                            #background_tasks:BackgroundTasks,
+                            background_tasks:BackgroundTasks,
                             file: UploadFile = File(...), 
                             ):
     
@@ -44,20 +44,20 @@ async def create_upload_file(request:Request,
     p_new = Path(tmp_uploads_path+file.filename[:-4]+'_denoised.wav')
     save_uploaded_file(file, p)
 
-    #background_tasks.add_task(create_spectrogram(p), message='your file is being processed')
     #create_spectrogram(p, value='_orig')
     
-    #  run inference
-    #inference(p)
+    #  run inference in background
+    background_tasks.add_task(run_inference, p, message="your file is being processed")
     #create_spectrogram(p_new, value='_clean')
     
     #return StreamingResponse(spect, media_type='image/png')
     #return FileResponse(spect)
-    return templates.TemplateResponse("upload_page.html", 
+    return {"message":"your file is being processed"}
+    '''return templates.TemplateResponse("upload_page.html", 
                                     {"request": request,
                                     "file_path": p,
                                     "filename": file.filename,
-                                    "type":file.content_type})
+                                    "type":file.content_type})'''
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
@@ -77,6 +77,6 @@ async def spect(request: Request,
 
     return StreamingResponse(spect, media_type='image/png')
 
-'''@app.get("/inf")
-async def run_inference(path):
-    inference(path)'''
+
+def run_inference(path):
+    inference(path)
