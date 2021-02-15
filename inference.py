@@ -12,10 +12,9 @@ from models.wavenet import WaveNet
 
 from utils.hparams import hparams as hp
 
-
 def inference(audio_clip):
     original_file = audio_clip
-    save_dir = './uploaded'
+    save_dir = './uploads'
     checkpoint_path = './saved_model/latest_checkpoint.pt'
     #default_inf_device = 'cpu',
 

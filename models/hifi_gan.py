@@ -6,6 +6,7 @@ import torchaudio
 
 from utils.hparams import hparams as hp
 
+torchaudio.set_audio_backend("sox_io")
 
 class PostNet(nn.Module):
     def __init__(self):
