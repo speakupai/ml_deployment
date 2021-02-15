@@ -47,17 +47,17 @@ async def create_upload_file(request:Request,
     #create_spectrogram(p, value='_orig')
     
     #  run inference in background
-    background_tasks.add_task(run_inference, p, message="your file is being processed")
+    background_tasks.add_task(run_inference, p)
     #create_spectrogram(p_new, value='_clean')
     
     #return StreamingResponse(spect, media_type='image/png')
     #return FileResponse(spect)
-    return {"message":"your file is being processed"}
-    '''return templates.TemplateResponse("upload_page.html", 
+    
+    return templates.TemplateResponse("upload_page.html", 
                                     {"request": request,
                                     "file_path": p,
                                     "filename": file.filename,
-                                    "type":file.content_type})'''
+                                    "type":file.content_type})
 
 
 def save_uploaded_file(upload_file: UploadFile, destination: Path) -> None:
