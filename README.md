@@ -57,3 +57,6 @@ cd ml_deployment
 
 $ python app.py
 ```
+
+The app should look like this
+<img src="" height="300" width="300">
