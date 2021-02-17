@@ -49,4 +49,11 @@ File containing all of the functionality in the app. It imports certain other fi
 Script to run inference o the audio clips.
 
 ## Local Run
-To run the app locally
+To run the app locally run the following
+
+```
+git clone git@github.com:speakupai/ml_deployment.git
+cd ml_deployment
+
+$ python app.py
+```
