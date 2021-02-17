@@ -26,7 +26,7 @@ templates = Jinja2Templates(directory="templates/")
 #3. Welcome page
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request:Request):
-    return templates.TemplateResponse("welcome.html", {"request": request, "message":"message"})
+    return templates.TemplateResponse("welcome.html", {"request": request})
 
 @app.post("/uploads")
 async def create_upload_file(request:Request,
