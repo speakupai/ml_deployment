@@ -60,4 +60,4 @@ $ python app.py
 
 The app should look like this
 
-<img src="https://github.com/speakupai/ml_deployment/blob/main/sound_samples/welcome_page.png" height="300" width="300">
+<img src="https://github.com/speakupai/ml_deployment/blob/main/sound_samples/welcome_page.png" height="300" width="450">
